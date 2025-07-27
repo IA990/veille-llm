@@ -1,0 +1,27 @@
+name: Harvest LLMs and Tools
+
+on:
+  schedule:
+    - cron: '0 2 * * 0' # Chaque dimanche à 2h (UTC)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run harvester pipeline
+        run: python scripts/llm_harvester.py
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'llm-bot'
+          git config --global user.email 'llm-bot@example.com'
+          git add data/llm_catalog/
+          git commit -m "Mise à jour auto : récolte LLMs & outils" || echo "Rien à commiter"
+          git push
