@@ -2,18 +2,14 @@ import os
 import requests
 from datetime import datetime
 
-# 📁 Dossier de sortie pour les fiches Markdown
 OUTPUT_DIR = "data/llm_catalog"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# 🔧 Tu peux activer/désactiver les logs avec cette variable
 DEBUG = True
-
 def log(msg):
     if DEBUG:
         print(msg)
 
-# 🔗 Récupération des données LLM depuis une API (à adapter)
 def fetch_llm_data():
     try:
         response = requests.get("https://example.com/api/llms")
@@ -23,12 +19,10 @@ def fetch_llm_data():
         log("[✓] Données récupérées avec succès")
         return response.json()
     except Exception as e:
-        log(f"[Erreur] Exception lors de la récupération : {e}")
+        log(f"[Erreur] Exception : {e}")
         return []
 
-# 📄 Création d'une fiche Markdown
 REQUIRED_KEYS = ["name", "provider", "description", "url"]
-
 def create_markdown_file(llm):
     if not all(key in llm for key in REQUIRED_KEYS):
         log(f"[⚠️] Fiche ignorée — données incomplètes : {llm}")
@@ -46,7 +40,6 @@ def create_markdown_file(llm):
 
     log(f"[✓] Fiche créée : {filename}")
 
-# 🚀 Point d'entrée principal
 def main():
     llms = fetch_llm_data()
     if not llms:
