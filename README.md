@@ -1,17 +1,17 @@
 # 🧠 veille-llm
 
-Ce dépôt génère automatiquement des fiches de veille sur les modèles LLM et outils associés.
+Un projet de veille technologique autour des modèles de langage (LLM).  
+Il génère automatiquement des fiches `.md` à partir de données en ligne ou locales, pour faciliter le suivi et la documentation des LLMs du marché.
 
-## 📦 Structure
+---
 
-- `data/llm_catalog/` : fiches Markdown (.md) générées
-- `scripts/llm_harvester.py` : pipeline Python de récolte
-- `.github/workflows/harvest_llms.yml` : exécution hebdomadaire
+## 📌 Fonctionnalités
 
-## ⚙️ Exécution manuelle
+- 🔍 Récupère des métadonnées sur les LLMs depuis une API ou un fichier JSON
+- 📄 Génère une fiche Markdown pour chaque modèle
+- 🗃️ Organise les fiches dans `data/llm_catalog`
+- 🔧 Extensible et personnalisable
 
-Tu peux lancer la récolte manuellement via l'onglet Actions → `Harvest LLMs and Tools`.
+---
 
-## 🔄 Synchronisation
-
-Les fiches sont injectées dans le profil GitHub (dépôt IA990) via un autre workflow.
+## 📁 Arborescence du projet
